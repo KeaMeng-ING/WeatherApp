@@ -200,6 +200,7 @@ input[type="text"]::placeholder {
 
   input[type="text"] {
     width: 100%;
+    font-size: 3rem;
   }
 
   .form-group {
