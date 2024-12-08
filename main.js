@@ -7,13 +7,13 @@ async function fetchWeather(location) {
   );
 
   if (response.status === 400) {
-    console.log("asdfdf");
     throwErrorMsg();
   } else {
+    const error = document.querySelector(".error-msg");
+    error.style.display = "none";
     const responseJson = await response.json();
     const data = findImportantData(responseJson);
     displayData(data);
-    reset();
   }
 }
 
