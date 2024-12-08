@@ -184,7 +184,7 @@ input[type="text"]::placeholder {
 
 @media screen and (max-width: 480px) {
   html {
-    font-size: 45%;
+    font-size: 35%;
   }
   /* Styles for iPhones */
   .main-container {
