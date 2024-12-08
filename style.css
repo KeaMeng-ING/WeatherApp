@@ -181,3 +181,28 @@ input[type="text"]::placeholder {
   font-size: 20px;
   display: none;
 }
+
+@media screen and (max-width: 480px) {
+  html {
+    font-size: 45%;
+  }
+  /* Styles for iPhones */
+  .main-container {
+    background-image: url("night.jpg");
+    opacity: 0.95;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    width: 100vw;
+    height: 100%;
+  }
+
+  input[type="text"] {
+    width: 100%;
+  }
+
+  .form-group {
+    width: 85%;
+  }
+}
