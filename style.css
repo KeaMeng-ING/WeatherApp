@@ -83,14 +83,16 @@ input[type="text"]::placeholder {
   color: #f3f3f3;
 }
 
-.condition {
+.condition,
+.forecast-date {
   font-size: 2.2rem;
   letter-spacing: 0.1rem;
   line-height: 3.5rem;
   padding-left: 0.3rem;
 }
 
-.location {
+.location,
+.forecast-condition {
   font-size: 4rem;
   line-height: 3.5rem;
   margin-bottom: 1rem;
@@ -182,6 +184,66 @@ input[type="text"]::placeholder {
   display: none;
 }
 
+.tomorrow0,
+.tomorrow1,
+.tomorrow2 {
+  position: absolute;
+  top: 65%;
+  width: 90%;
+  margin-left: 10%;
+  color: #f3f3f3;
+}
+
+.tomorrow1 {
+  width: 70%;
+  left: 30%;
+}
+
+.tomorrow2 {
+  width: 70%;
+  left: 60%;
+}
+
+.forecast-degrees {
+  font-size: 12rem;
+}
+
+.forecast-degrees::after {
+  content: "\00B0 C";
+  font-size: 2.5rem;
+  position: absolute;
+  top: 1.8rem;
+  left: 13.3rem;
+}
+
+.tomorrow-details {
+  top: 13rem;
+  left: 18rem;
+}
+
+.tomorrow-details h3 {
+  font-size: 18px;
+}
+
+/* .tomo-feels::after {
+  content: "\00B0 C";
+  position: absolute;
+  bottom: 0.9rem;
+  left: 12rem;
+  font-size: 1rem;
+} */
+
+.forecast-info {
+  margin-top: 3rem; /* Adjust the value as needed */
+}
+.tomo-condition {
+  margin-bottom: 0;
+}
+
+.divider {
+  display: none;
+}
+
 @media screen and (max-width: 480px) {
   html {
     font-size: 35%;
@@ -195,7 +257,8 @@ input[type="text"]::placeholder {
     background-position: center;
     position: relative;
     width: 100vw;
-    height: 100%;
+    overflow-x: hidden;
+    overflow-y: auto;
   }
 
   input[type="text"] {
@@ -205,5 +268,60 @@ input[type="text"]::placeholder {
 
   .form-group {
     width: 85%;
+  }
+
+  .responsive {
+    height: 130%;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .today {
+    position: absolute;
+    top: 14%;
+    width: 90%;
+    margin-left: 10%;
+    color: #f3f3f3;
+  }
+
+  .tomorrow0,
+  .tomorrow1 {
+    position: absolute;
+    top: 40%;
+    width: 90%;
+    margin-left: 10%;
+    color: #f3f3f3;
+  }
+
+  .forecast h3 {
+    font-size: 2rem;
+  }
+
+  .tomorrow1 {
+    top: 63%;
+    left: 0%;
+  }
+
+  .tomorrow2 {
+    top: 86%;
+    left: 0%;
+  }
+
+  .divider {
+    display: block;
+    border: none;
+    height: 2px;
+    background-color: #f3f3f3;
+    margin: 1rem;
+    position: absolute;
+    width: 80%;
+    top: 39%;
+    left: 8%;
+    opacity: 0.5;
+  }
+
+  .tomorrow-details {
+    top: 10.8rem;
   }
 }

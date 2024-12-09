@@ -1,6 +1,6 @@
 async function fetchWeather(location) {
   const response = await fetch(
-    `https://api.weatherapi.com/v1/forecast.json?key=a65937ec19c544bd8f7112656240812&q=${location}&days=3`,
+    `https://api.weatherapi.com/v1/forecast.json?key=a65937ec19c544bd8f7112656240812&q=${location}&days=4`,
     {
       mode: "cors",
     }
@@ -14,6 +14,7 @@ async function fetchWeather(location) {
     const responseJson = await response.json();
     const data = findImportantData(responseJson);
     displayData(data);
+    displayForecast(data.forecast);
   }
 }
 
@@ -43,16 +44,16 @@ function findImportantData(data) {
   const currentHumidity = data["current"]["humidity"];
 
   //   // Forecast Data
-  //   const forecastData = data["forecast"]["forecastday"]
-  //     .slice(1)
-  //     .map((forecast) => ({
-  //       date: forecast["date"],
-  //       condition: forecast["day"]["condition"]["text"],
-  //       avgTemp: forecast["day"]["avgtemp_c"],
-  //       willItRain: forecast["day"]["daily_will_it_rain"],
-  //       maxWind: forecast["day"]["maxwind_kph"],
-  //       avgHumidity: forecast["day"]["avghumidity"],
-  //     }));
+  const forecastData = data["forecast"]["forecastday"]
+    .slice(1)
+    .map((forecast) => ({
+      date: forecast["date"],
+      condition: forecast["day"]["condition"]["text"],
+      avgTemp: forecast["day"]["avgtemp_c"],
+      willItRain: forecast["day"]["daily_will_it_rain"],
+      maxWind: forecast["day"]["maxwind_kph"],
+      avgHumidity: forecast["day"]["avghumidity"],
+    }));
 
   const result = {
     location,
@@ -63,7 +64,7 @@ function findImportantData(data) {
       currentWind,
       currentHumidity,
     },
-    // forecast: forecastData,
+    forecast: forecastData,
   };
 
   return result;
@@ -121,12 +122,65 @@ function displayData(data) {
   today.appendChild(details);
 }
 
+function displayForecast(data) {
+  const forecast = document.querySelectorAll(".forecast");
+
+  forecast.forEach((day, index) => {
+    day.textContent = "";
+    const forecastInfo = document.createElement("div");
+    forecastInfo.className = "forecast-info";
+
+    const forecastDate = document.createElement("p");
+    forecastDate.className = "forecast-date";
+    const inputDate = new Date(data[index].date);
+    const options = { day: "2-digit", month: "long", year: "numeric" };
+    const formattedDate = inputDate.toLocaleDateString("en-GB", options);
+    forecastDate.textContent = formattedDate;
+
+    const forecastCondition = document.createElement("h1");
+    forecastCondition.className = "forecast-condition";
+    forecastCondition.textContent = data[index].condition;
+
+    forecastInfo.appendChild(forecastDate);
+    forecastInfo.appendChild(forecastCondition);
+
+    const temperature = document.createElement("span");
+    temperature.classList.add("degrees", "forecast-degrees");
+    const avgTemp = Math.floor(data[index].avgTemp);
+    temperature.textContent = avgTemp;
+
+    const weatherDetail = document.createElement("div");
+    weatherDetail.classList.add("weather-details", "tomorrow-details");
+
+    const feelLike = document.createElement("h3");
+    feelLike.classList.add("tomo-feels");
+    feelLike.textContent = `RAIN CHANCE: ${data[index].willItRain}`;
+
+    const wind = document.createElement("h3");
+    wind.className = "wind";
+    wind.textContent = `WIND: ${data[index].maxWind} KPH`;
+
+    const humidity = document.createElement("h3");
+    humidity.className = "humidity";
+    humidity.textContent = `HUMIDITY: ${data[index].avgHumidity}`;
+
+    weatherDetail.appendChild(feelLike);
+    weatherDetail.appendChild(wind);
+    weatherDetail.appendChild(humidity);
+
+    day.appendChild(forecastInfo);
+    day.appendChild(temperature);
+    day.appendChild(weatherDetail);
+  });
+}
+
 const form = document.querySelector("form");
 form.addEventListener("submit", (e) => {
-  console.log("in");
   e.preventDefault();
   const location = form.city.value;
   fetchWeather(location);
 });
 
-window.onload(fetchWeather("Cambodia"));
+window.onload = () => {
+  fetchWeather("Cambodia");
+};
