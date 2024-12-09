@@ -282,7 +282,7 @@ input[type="text"]::placeholder {
     position: absolute;
     top: 40%;
     width: 90%;
-    margin-left: 10%;
+    margin-left: 6%;
     color: #f3f3f3;
   }
 
@@ -291,12 +291,13 @@ input[type="text"]::placeholder {
   }
 
   .tomorrow1 {
-    top: 63%;
+    top: 67%;
     left: 0%;
   }
 
   .tomorrow2 {
-    top: 86%;
+    width: 90%;
+    top: 94%;
     left: 0%;
   }
 
@@ -315,5 +316,9 @@ input[type="text"]::placeholder {
 
   .forecast-details {
     top: 10.8rem;
+  }
+
+  .forecast-degrees {
+    font-size: 17rem;
   }
 }
