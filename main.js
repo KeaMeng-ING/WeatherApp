@@ -126,6 +126,15 @@ function displayForecast(data) {
   const forecast = document.querySelectorAll(".forecast");
 
   forecast.forEach((day, index) => {
+    if (day.classList.contains("fade-in2")) {
+      day.style.display = "none";
+      day.classList.remove("fade-in2");
+      day.offsetWidth;
+      day.classList.add("fade-in2");
+      day.style.display = "block";
+    } else {
+      day.classList.add("fade-in2");
+    }
     day.textContent = "";
     const forecastInfo = document.createElement("div");
     forecastInfo.className = "forecast-info";
