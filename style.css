@@ -225,14 +225,6 @@ input[type="text"]::placeholder {
   font-size: 18px;
 }
 
-/* .tomo-feels::after {
-  content: "\00B0 C";
-  position: absolute;
-  bottom: 0.9rem;
-  left: 12rem;
-  font-size: 1rem;
-} */
-
 .forecast-info {
   margin-top: 3rem; /* Adjust the value as needed */
 }
@@ -321,7 +313,7 @@ input[type="text"]::placeholder {
     opacity: 0.5;
   }
 
-  .tomorrow-details {
+  .forecast-details {
     top: 10.8rem;
   }
 }

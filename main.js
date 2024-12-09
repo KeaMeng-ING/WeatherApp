@@ -150,10 +150,10 @@ function displayForecast(data) {
     temperature.textContent = avgTemp;
 
     const weatherDetail = document.createElement("div");
-    weatherDetail.classList.add("weather-details", "tomorrow-details");
+    weatherDetail.classList.add("weather-details", "forecast-details");
 
     const feelLike = document.createElement("h3");
-    feelLike.classList.add("tomo-feels");
+    feelLike.classList.add("forecast-feels");
     feelLike.textContent = `RAIN CHANCE: ${data[index].willItRain}`;
 
     const wind = document.createElement("h3");
